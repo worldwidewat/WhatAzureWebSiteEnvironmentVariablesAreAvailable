@@ -15,7 +15,17 @@ namespace WebApp.Controllers
         {
 
             var viewModel = new HomeViewModel();
-            
+
+            viewModel.RandomItems = new[]
+            {
+                new KeyValuePair<string, string>("Request.IsLocal", Request.HttpMethod),
+                new KeyValuePair<string, string>("Request.IsLocal", Request.IsLocal.ToString()),
+                new KeyValuePair<string, string>("Request.IsLocal", Request.IsSecureConnection.ToString()),
+                new KeyValuePair<string, string>("Request.IsSecureConnection", Request.IsSecureConnection.ToString()),
+                new KeyValuePair<string, string>("Request.RawUrl", Request.RawUrl),
+                new KeyValuePair<string, string>("Request.UserHostAddress", Request.UserHostAddress)
+            };
+
             var environmentVariables = Environment.GetEnvironmentVariables();
             viewModel.EnvironmentVariables = environmentVariables.Keys.OfType<string>()
                 .Select(k=>new KeyValuePair<string, string>(k, environmentVariables[k].ToString()));
@@ -23,10 +33,6 @@ namespace WebApp.Controllers
             var appSettings = ConfigurationManager.AppSettings;
             viewModel.AppSettings = appSettings.Keys.OfType<string>()
                 .Select(k => new KeyValuePair<string, string>(k, appSettings[k]));
-
-            var connectionStrings = ConfigurationManager.ConnectionStrings;
-            viewModel.ConnectionStrings = connectionStrings.OfType<string>()
-                .Select(n => new KeyValuePair<string, ConnectionStringSettings>(n, connectionStrings[n]));
 
             var headers = Request.Headers;
             viewModel.Headers = headers.OfType<string>()

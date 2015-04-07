@@ -77,8 +77,8 @@
             <a href="#environment-variables">environment variables</a>,
             <a href="#request-headers">request headers</a>,
             <a href="#request-cookies">request cookies</a>, 
-            <a href="#app-settings">app settings</a>, and 
-            <a href="#connection-strings">connection strings</a>.</p>
+            <a href="#app-settings">app settings</a>, and
+            <a href="#random">other random things</a>.</p>
 
         <h2 id="environment-variables">Environment Variables</h2>
         <table>
@@ -152,20 +152,17 @@
             }
         </table>
 
-        <h2 id="connection-strings">Connection Strings</h2>
+        <h2 id="random">Other Random Things</h2>
         <table>
             <tr>
-                <th>Name</th>
-                <th>Connection String</th>
-                <th>Provider Name</th>
+                <th>Thing</th>
+                <th>Value</th>
             </tr>
-
-            @foreach (var pair in Model.ConnectionStrings)
+            @foreach (var pair in Model.RandomItems)
             {
                 <tr>
                     <td>@pair.Key</td>
-                    <td>@pair.Value.ConnectionString</td>
-                    <td>@pair.Value.ProviderName</td>
+                    <td>@pair.Value</td>
                 </tr>
             }
         </table>
