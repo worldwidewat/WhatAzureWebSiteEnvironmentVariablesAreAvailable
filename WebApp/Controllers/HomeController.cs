@@ -26,7 +26,15 @@ namespace WebApp.Controllers
 
             var connectionStrings = ConfigurationManager.ConnectionStrings;
             viewModel.ConnectionStrings = connectionStrings.OfType<string>()
-                .Select(n => new KeyValuePair<string, string>(n, connectionStrings[n].ConnectionString));
+                .Select(n => new KeyValuePair<string, ConnectionStringSettings>(n, connectionStrings[n]));
+
+            var headers = Request.Headers;
+            viewModel.Headers = headers.OfType<string>()
+                .Select(h => new KeyValuePair<string, string>(h, headers[h]));
+
+            var cookies = Request.Cookies;
+            viewModel.Cookies = cookies.OfType<string>()
+                .Select(c => new KeyValuePair<string, HttpCookie>(c, cookies[c]));
 
             return View(viewModel);
         }

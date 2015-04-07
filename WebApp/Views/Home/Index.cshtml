@@ -79,12 +79,52 @@
                 <th>Variable</th>
                 <th>Value</th>
             </tr>
-
             @foreach (var pair in Model.EnvironmentVariables)
             {
                 <tr>
                     <td>@pair.Key</td>
                     <td>@pair.Value</td>
+                </tr>
+            }
+        </table>
+
+        <h2 id="app-settings">Request Headers</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            @foreach (var pair in Model.Headers)
+            {
+                <tr>
+                    <td>@pair.Key</td>
+                    <td>@pair.Value</td>
+                </tr>
+            }
+        </table>
+
+        <h2 id="app-settings">Request Cookies</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Domain</th>
+                <th>Path</th>
+                <th>Expires</th>
+                <th>HTTP Only</th>
+                <th>Secure</th>
+            </tr>
+
+            @foreach (var pair in Model.Cookies)
+            {
+                <tr>
+                    <td>@pair.Key</td>
+                    <td>@pair.Value.Value</td>
+                    <td>@pair.Value.Domain</td>
+                    <td>@pair.Value.Path</td>
+                    <td>@pair.Value.Expires</td>
+                    <td>@pair.Value.HttpOnly</td>
+                    <td>@pair.Value.Secure</td>
                 </tr>
             }
         </table>
@@ -109,14 +149,16 @@
         <table>
             <tr>
                 <th>Name</th>
-                <th>ConnectionString</th>
+                <th>Connection String</th>
+                <th>Provider Name</th>
             </tr>
 
             @foreach (var pair in Model.ConnectionStrings)
             {
                 <tr>
                     <td>@pair.Key</td>
-                    <td>@pair.Value</td>
+                    <td>@pair.Value.ConnectionString</td>
+                    <td>@pair.Value.ProviderName</td>
                 </tr>
             }
         </table>
