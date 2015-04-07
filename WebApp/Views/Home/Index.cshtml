@@ -1,0 +1,78 @@
+﻿@model WebApp.Models.HomeViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>What Environment Variables Does An Azure Web Site/App Support?</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid #888;
+            padding: 2px 5px;
+        }
+
+        tr:hover td {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>What Azure Web Site/App Environment Variables Are Available?</h1>
+    <h2>Environment Variables</h2>
+    <table>
+        <tr>
+            <th>Variable</th>
+            <th>Value</th>
+        </tr>
+
+        @foreach (var pair in Model.EnvironmentVariables)
+        {
+            <tr>
+                <td>@pair.Key</td>
+                <td>@pair.Value</td>
+            </tr>
+        }
+    </table>
+
+    <h2>App Settings</h2>
+    <table>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+
+        @foreach (var pair in Model.AppSettings)
+        {
+            <tr>
+                <td>@pair.Key</td>
+                <td>@pair.Value</td>
+            </tr>
+        }
+    </table>
+
+    <h2>Connection Strings</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>ConnectionString</th>
+        </tr>
+
+        @foreach (var pair in Model.ConnectionStrings)
+        {
+            <tr>
+                <td>@pair.Key</td>
+                <td>@pair.Value</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
