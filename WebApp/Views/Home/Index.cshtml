@@ -7,8 +7,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>What Environment Variables Does An Azure Web Site/App Support?</title>
+    <title>What Azure Web Site/App Environment Variables Are Available?</title>
     <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
         table {
             border-collapse: collapse;
         }
@@ -16,63 +21,108 @@
         th, td {
             text-align: left;
             vertical-align: top;
-            border-bottom: 1px solid #888;
-            padding: 2px 5px;
+            border-bottom: 1px solid #aaa;
+            padding: 5px;
         }
 
-        tr:hover td {
+        tr:hover td, footer {
             background-color: #eee;
         }
+
+        main {
+            padding: 0 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: right;
+        }
     </style>
+    <!--
+        
+        CAN HAZ CHEESE?
+
+           ____,'`-, 
+      _,--'   ,/::.; 
+   ,-'       ,/::,' `---.___        ___,_ 
+   |       ,:';:/        ;'"`;"`--./ ,-^.;--. 
+   |:     ,:';,'         '         `.   ;`   `-. 
+    \:.,:::/;/ -:.                   `  | `     `-. 
+     \:::,'//__.;  ,;  ,  ,  :.`-.   :. |  ;       :. 
+      \,',';/O)^. :'  ;  :   '__` `  :::`.       .:' ) 
+      |,'  |\__,: ;      ;  '/O)`.   :::`;       ' ,' 
+           |`--''            \__,' , ::::(       ,' 
+           `    ,            `--' ,: :::,'\   ,-' 
+            | ,;         ,    ,::'  ,:::   |,' 
+            |,:        .(          ,:::|   ` 
+            ::'_   _   ::         ,::/:| 
+           ,',' `-' \   `.      ,:::/,:| 
+          | : _  _   |   '     ,::,' ::: 
+          | \ O`'O  ,',   ,    :,'   ;:: 
+           \ `-'`--',:' ,' , ,,'      :: 
+            ``:.:.__   ',-','        ::' 
+    -hrr-      `--.__, ,::.         ::' 
+                   |:  ::::.       ::' 
+                   |:  ::::::    ,::' 
+
+
+        -->
 </head>
 <body>
-    <h1>What Azure Web Site/App Environment Variables Are Available?</h1>
-    <h2>Environment Variables</h2>
-    <table>
-        <tr>
-            <th>Variable</th>
-            <th>Value</th>
-        </tr>
-
-        @foreach (var pair in Model.EnvironmentVariables)
-        {
+    <main>
+        <h1>What Azure Web Site/App Environment Variables Are Available?</h1>
+        <p>This is a completely <em>out of the box</em>, <em>default</em> web site/app. Here are its <a href="#environment-variables">environment variables</a>, <a href="#app-settings">app settings</a>, and <a href="#connection-strings">connection strings</a>.</p>
+        <h2 id="environment-variables">Environment Variables</h2>
+        <table>
             <tr>
-                <td>@pair.Key</td>
-                <td>@pair.Value</td>
+                <th>Variable</th>
+                <th>Value</th>
             </tr>
-        }
-    </table>
 
-    <h2>App Settings</h2>
-    <table>
-        <tr>
-            <th>Key</th>
-            <th>Value</th>
-        </tr>
+            @foreach (var pair in Model.EnvironmentVariables)
+            {
+                <tr>
+                    <td>@pair.Key</td>
+                    <td>@pair.Value</td>
+                </tr>
+            }
+        </table>
 
-        @foreach (var pair in Model.AppSettings)
-        {
+        <h2 id="app-settings">App Settings</h2>
+        <table>
             <tr>
-                <td>@pair.Key</td>
-                <td>@pair.Value</td>
+                <th>Key</th>
+                <th>Value</th>
             </tr>
-        }
-    </table>
 
-    <h2>Connection Strings</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>ConnectionString</th>
-        </tr>
+            @foreach (var pair in Model.AppSettings)
+            {
+                <tr>
+                    <td>@pair.Key</td>
+                    <td>@pair.Value</td>
+                </tr>
+            }
+        </table>
 
-        @foreach (var pair in Model.ConnectionStrings)
-        {
+        <h2 id="connection-strings">Connection Strings</h2>
+        <table>
             <tr>
-                <td>@pair.Key</td>
-                <td>@pair.Value</td>
+                <th>Name</th>
+                <th>ConnectionString</th>
             </tr>
-        }
-    </table>
+
+            @foreach (var pair in Model.ConnectionStrings)
+            {
+                <tr>
+                    <td>@pair.Key</td>
+                    <td>@pair.Value</td>
+                </tr>
+            }
+        </table>
+    </main>
+    <footer>
+        <p>Built by <a href="https://twitter.com/mharen">@@mharen</a> just for you. Source on <a href="https://github.com/worldwidewat/WhatAzureWebSiteEnvironmentVariablesAreAvailable">github</a>.</p>
+    </footer>
 </body>
 </html>
