@@ -18,9 +18,8 @@ namespace WebApp.Controllers
 
             viewModel.RandomItems = new[]
             {
-                new KeyValuePair<string, string>("Request.IsLocal", Request.HttpMethod),
+                new KeyValuePair<string, string>("Request.HttpMethod", Request.HttpMethod),
                 new KeyValuePair<string, string>("Request.IsLocal", Request.IsLocal.ToString()),
-                new KeyValuePair<string, string>("Request.IsLocal", Request.IsSecureConnection.ToString()),
                 new KeyValuePair<string, string>("Request.IsSecureConnection", Request.IsSecureConnection.ToString()),
                 new KeyValuePair<string, string>("Request.RawUrl", Request.RawUrl),
                 new KeyValuePair<string, string>("Request.UserHostAddress", Request.UserHostAddress)
