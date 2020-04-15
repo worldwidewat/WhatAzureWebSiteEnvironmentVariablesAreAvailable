@@ -26,19 +26,19 @@ namespace WebApp.Controllers
             };
 
             var environmentVariables = Environment.GetEnvironmentVariables();
-            viewModel.EnvironmentVariables = environmentVariables.Keys.OfType<string>()
+            viewModel.EnvironmentVariables = environmentVariables.Keys.OfType<string>().OrderBy(k => k)
                 .Select(k=>new KeyValuePair<string, string>(k, environmentVariables[k].ToString()));
 
             var appSettings = ConfigurationManager.AppSettings;
-            viewModel.AppSettings = appSettings.Keys.OfType<string>()
+            viewModel.AppSettings = appSettings.Keys.OfType<string>().OrderBy(k => k)
                 .Select(k => new KeyValuePair<string, string>(k, appSettings[k]));
 
             var headers = Request.Headers;
-            viewModel.Headers = headers.OfType<string>()
+            viewModel.Headers = headers.OfType<string>().OrderBy(h => h)
                 .Select(h => new KeyValuePair<string, string>(h, headers[h]));
 
             var cookies = Request.Cookies;
-            viewModel.Cookies = cookies.OfType<string>()
+            viewModel.Cookies = cookies.OfType<string>().OrderBy(c => c)
                 .Select(c => new KeyValuePair<string, HttpCookie>(c, cookies[c]));
 
             return View(viewModel);
