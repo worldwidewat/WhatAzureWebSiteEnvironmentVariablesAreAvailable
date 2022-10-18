@@ -1,0 +1,3 @@
+# WhatAzureWebSiteEnvironmentVariablesAreAvailable
+
+https://whatazurewebsiteenvironmentvariablesareavailable.azurewebsites.net
